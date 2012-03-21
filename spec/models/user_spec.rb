@@ -39,4 +39,11 @@ describe User do
       end
     end
   end
+
+  context "#full_name" do
+    it "should have full name" do
+      users_name = "#{user.first_name} #{user.last_name}"
+      user.full_name.should eq("#{users_name}")
+    end
+  end
 end

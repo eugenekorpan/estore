@@ -5,3 +5,10 @@ Factory.define :user do |u|
   u.password { "#{rand}-#{rand}-aTads" }
   u.password_confirmation { |u| u.password }
 end
+
+Factory.define :admin_user do |u|
+  u.sequence(:email) { |n| "person#{n}@example.com" }
+  u.password { "#{rand}-#{rand}-aTads" }
+  u.password_confirmation { |u| u.password }
+end
+

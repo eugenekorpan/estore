@@ -6,7 +6,8 @@ gem 'mongrel'
 gem 'pry'
 gem 'devise'
 gem 'paperclip', '~> 2.3.8'
-
+gem 'activeadmin'
+gem 'kaminari'
 
 group :test, :development do
   gem 'rspec-rails', '>= 2.6.0'

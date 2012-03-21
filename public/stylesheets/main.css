@@ -1,3 +1,29 @@
 #user_nav {
   float: right;
 }
+
+.product div {
+  padding-left: 10px;
+  float: left;
+}
+
+.product {
+  float: left;
+}
+
+.product div:first-child {
+  border-left: none;
+}
+
+.product .name, .product .price {
+  width: 100px;
+  padding: 10px 10px;
+}
+
+.product .price {
+  border-left: 1px solid black;
+}
+
+.product .description {
+  width: 300px;
+}

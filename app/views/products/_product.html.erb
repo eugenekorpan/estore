@@ -1,0 +1,17 @@
+<div class="product">
+
+  <div>
+    <%= image_tag product.image.url(:thumb), :style => "width: 50px;" %>
+  </div>
+
+  <div class="name">
+    <%= link_to product.name, showroom_product_path(@showroom, product) %>
+  </div>
+
+  <div class="price">
+    <%= number_to_currency product.price %>
+  </div>
+
+</div>
+
+<div style="clear:both;"></div>
