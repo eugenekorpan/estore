@@ -3,10 +3,7 @@ Installation Instructions:
 - git clone git@github.com:eugenekorpan/estore.git
 - cp config/database.yml.sample config/database.yml (and update it with your mysql cridentials)
 - bundle install
-- rake db:create:all
-- rake db:migrate
-- rake db:seed
-- rails server
+- rake db:reload
 
 After these steps you should have app up and running with some seed data (http://localhost:3000)
 
