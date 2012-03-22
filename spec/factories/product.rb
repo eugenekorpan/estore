@@ -3,5 +3,5 @@ Factory.define :product do |p|
   p.description "test product"
   p.price 1_000
   p.image { File.new(Rails.root.join("spec", "support", "files", "chromium_logos.jpg")) }
-  p.association :showroom, :factory => :showroom
+  p.publish_at Date.today - 1.month
 end

@@ -3,8 +3,8 @@ require 'spec_helper'
 describe ProductsController do
 
   let(:user) { Factory.create(:user) }
-  let(:showroom) { Factory.create(:showroom, :user => user) }
-  let!(:product) { Factory.create(:product, :showroom_id => showroom.id) }
+  let(:product) { Factory.create(:product) }
+  let(:showroom) { Factory.create(:showroom, :user => user, :products => [product]) }
   let(:current_showroom) { user.current_showroom }
 
   before do

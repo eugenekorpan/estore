@@ -7,7 +7,7 @@ Factory.define :user do |u|
 end
 
 Factory.define :admin_user do |u|
-  u.sequence(:email) { |n| "person#{n}@example.com" }
+  u.sequence(:email) { |n| "admin#{n}@example.com" }
   u.password { "#{rand}-#{rand}-aTads" }
   u.password_confirmation { |u| u.password }
 end

@@ -5,7 +5,8 @@ ActiveAdmin.register Product do
       f.input :description
       f.input :price
       f.input :image, :as => :file
-      f.input :showroom, :as => :select
+      f.input :showrooms
+      f.input :publish_at
     end
     f.buttons
   end
@@ -15,11 +16,14 @@ ActiveAdmin.register Product do
       image_tag(product.image.url(:thumb))
     end
     column :name
-    column :showroom
     column :price, :sortable => :price do |product|
       div :class => "price" do
         number_to_currency product.price
       end
+    end
+    column :publish_at
+    column "Showrooms" do |product|
+      product.showrooms.map(&:title).join("<br /> ").html_safe
     end
     default_actions
   end
@@ -31,16 +35,20 @@ ActiveAdmin.register Product do
         div :class => "attributes_table" do
           table do
             tr do
-              td "Showroom"
-              td product.showroom.title
-            end
-            tr do
               td "Price"
               td number_to_currency(product.price)
             end
             tr do
               td "Image"
               td image_tag(product.image.url)
+            end
+            tr do
+              td "Publish at"
+              td product.publish_at
+            end
+            tr do
+              td "Showrooms"
+              td product.showrooms.map(&:title).join("<br /> ").html_safe
             end
           end
         end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120322092735) do
+ActiveRecord::Schema.define(:version => 20120322114706) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -53,12 +53,16 @@ ActiveRecord::Schema.define(:version => 20120322092735) do
     t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "showroom_id"
+    t.date     "publish_at",         :default => '2012-03-22'
+  end
+
+  create_table "products_showrooms", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "showroom_id"
   end
 
   create_table "showrooms", :force => true do |t|
     t.string   "title"
-    t.integer  "products_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"

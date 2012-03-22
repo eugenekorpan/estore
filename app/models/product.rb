@@ -3,5 +3,11 @@ class Product < ActiveRecord::Base
 
   has_attached_file :image, :styles => { :thumb => "100x100>" }
 
-  belongs_to :showroom, :counter_cache => true
+  has_and_belongs_to_many :showrooms
+
+  scope :pending, lambda { where("DATE_SUB(CURDATE(), INTERVAL 1 MONTH) < products.publish_at") }
+
+  def published?
+    @published ||= (publish_at <= Date.today)
+  end
 end
