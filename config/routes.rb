@@ -6,10 +6,8 @@ Estore::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   resource :showroom do
-    resources :products, :only => :index
+    resources :products, :only => [ :index, :show ]
   end
-
-  resources :products, :only => :show
 
   devise_scope :user do
     root :to => "devise/sessions#new"

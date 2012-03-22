@@ -1,3 +1,10 @@
+.content {
+  border: 1px solid #E2E2E2;
+  border-radius: 5px;
+  background: #EEEEEE;
+  padding: 20px;
+}
+
 #user_nav {
   float: right;
 }
