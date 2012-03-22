@@ -4,7 +4,7 @@ PASSWORD = "password"
 
 def create_products
   15.times do
-    product = Factory.create(:product)
+    product = Factory.create(:product, :price => rand(100)*10)
     p "created product - #{product.name}"
   end
 end
@@ -34,7 +34,7 @@ end
 def create_pending_products
   p "Creating pendig products..."
   15.times do
-    Factory.create(:product, :publish_at => Date.today + 1.month)
+    Factory.create(:product, :publish_at => Date.today + 1.month, :price => rand(100)*10)
   end
 end
 

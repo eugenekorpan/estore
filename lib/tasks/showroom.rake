@@ -8,7 +8,6 @@ namespace :showrooms do
       showroom = Showroom.create(:title => "#{user.first_name}'s showroom (#{Date.today})", :user => user)
       fresh_products = Product.pending.order("RAND()").limit(10)     
       showroom.products << fresh_products
-      showroom.save
     end
   end
 end
