@@ -10,7 +10,13 @@ class User < ActiveRecord::Base
   validates :first_name, :presence => true
   validates :last_name, :presence => true
 
+  has_many :showrooms
+
   def full_name
     [first_name, last_name].join(" ")
+  end
+
+  def current_showroom
+    showrooms.last
   end
 end

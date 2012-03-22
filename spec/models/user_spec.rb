@@ -46,4 +46,12 @@ describe User do
       user.full_name.should eq("#{users_name}")
     end
   end
+
+  context "#current_showroom" do
+    it "should use lates showroom" do
+      Factory.create(:showroom, :user => user)
+      latest_showroom = Factory.create(:showroom, :user => user)
+      user.current_showroom.should eq(latest_showroom)
+    end
+  end
 end

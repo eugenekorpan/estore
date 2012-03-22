@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_showroom
+  before_filter :find_showroom, :only => :index
   before_filter :find_product, :only => :show
 
   def index
@@ -10,12 +10,13 @@ class ProductsController < ApplicationController
   private
 
   def find_product
-    @product = @showroom.products.find_by_id(params[:id])
-    redirect_to showroom_products_path(@showroom), :notice => "Invalid url" unless @product
+    # product is public thus it shouldn't be scoped with @showroom
+    @product = Product.find_by_id(params[:id])
+    redirect_to_default unless @product
   end
 
   def find_showroom
     @showroom = Showroom.find_by_id(params[:showroom_id])
-    redirect_to showrooms_path, :notice => "Invalid url" unless @showroom
+    redirect_to_default if @showroom.blank? || !current_user.showrooms.include?(@showroom)
   end
 end

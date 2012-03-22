@@ -11,4 +11,4 @@
   <%= image_tag @product.image.url %>
 </p>
 
-<%= link_to "Showroom", showroom_products_path(@showroom) %>
+<%= link_to "Showroom", showroom_products_path(current_showroom) %>

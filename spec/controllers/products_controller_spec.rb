@@ -3,8 +3,9 @@ require 'spec_helper'
 describe ProductsController do
 
   let(:user) { Factory.create(:user) }
-  let(:showroom) { Factory.create(:showroom) }
+  let(:showroom) { Factory.create(:showroom, :user => user) }
   let!(:product) { Factory.create(:product, :showroom_id => showroom.id) }
+  let(:current_showroom) { user.current_showroom }
 
   before do
     sign_in user
@@ -21,7 +22,7 @@ describe ProductsController do
       lambda {
         get :index, :showroom_id => "invalid"
       }.should_not raise_error
-      response.should redirect_to(showrooms_path)
+      response.should redirect_to(showroom_products_path(current_showroom))
     end
 
     it "should not permit unauthorized user" do
@@ -33,8 +34,15 @@ describe ProductsController do
 
   context "#show" do
     it "should show product info" do
-      get :show, :showroom_id => showroom, :id => product
+      get :show, :id => product
       assigns(:product).should eq(product)
+    end
+
+    it "should showr product info even if product doesn't belong to user's showroom" do
+      public_product = Factory.create(:product)
+      get :show, :id => public_product
+      response.should be_success
+      assigns(:product).should eq(public_product)
     end
 
     it "should not raise an error with invalid product id" do

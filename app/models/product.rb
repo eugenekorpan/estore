@@ -3,5 +3,5 @@ class Product < ActiveRecord::Base
 
   has_attached_file :image, :styles => { :thumb => "100x100>" }
 
-  belongs_to :showroom
+  belongs_to :showroom, :counter_cache => true
 end
