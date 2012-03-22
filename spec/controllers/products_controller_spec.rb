@@ -4,7 +4,7 @@ describe ProductsController do
 
   let(:user) { Factory.create(:user) }
   let(:product) { Factory.create(:product) }
-  let(:showroom) { Factory.create(:showroom, :user => user, :products => [product]) }
+  let!(:showroom) { Factory.create(:showroom, :user => user, :products => [product]) }
   let(:current_showroom) { user.current_showroom }
 
   before do
@@ -13,16 +13,8 @@ describe ProductsController do
 
   context "#index" do
     it "should render products" do
-      get :index, :showroom_id => showroom
-      assigns(:showroom).should eq(showroom)
+      get :index
       assigns(:products).should have(1).item
-    end
-
-    it "should not raise an error with invalid showroom id" do
-      lambda {
-        get :index, :showroom_id => "invalid"
-      }.should_not raise_error
-      response.should redirect_to(showroom_products_path(current_showroom))
     end
 
     it "should not permit unauthorized user" do
@@ -49,7 +41,7 @@ describe ProductsController do
       lambda {
         get :show, :showroom_id => showroom, :id => "invlid" 
       }.should_not raise_error
-      response.should redirect_to(showroom_products_path(showroom))
+      response.should redirect_to(showroom_products_path)
     end
 
 

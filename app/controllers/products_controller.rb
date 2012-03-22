@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :find_showroom, :only => :index
   before_filter :find_product, :only => :show
 
   def index
-    @products = @showroom.products.page(params[:page] || 1)
+    # we keep the history of user's showrooms but user sees only current mont's showroom
+    @products = current_showroom.products.page(params[:page] || 1)
   end
 
   private
@@ -15,8 +15,4 @@ class ProductsController < ApplicationController
     redirect_to_default unless @product
   end
 
-  def find_showroom
-    @showroom = Showroom.find_by_id(params[:showroom_id])
-    redirect_to_default if @showroom.blank? || !current_user.showrooms.include?(@showroom)
-  end
 end

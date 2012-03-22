@@ -12,7 +12,7 @@ describe ApplicationController do
 
   context "#after_sign_in_path_for" do
     it "should redirect to showroom path after user login" do
-      subject.after_sign_in_path_for(user).should == showroom_products_path(user.current_showroom)
+      subject.after_sign_in_path_for(user).should == showroom_products_path
     end
 
     it "should redirect to default path if user is admin" do

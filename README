@@ -16,3 +16,8 @@ Run specs
 - rake rcov:rspec
 
 After that you should have `coverage` folder in the rails root directory. Find and open `coverage/index.html`.
+
+After seeding the db it has some new products, you can use them to test rake task which updates user's showroom. Generally that rake task should be executed by cron job but for test purpose you can run 
+- rake showrooms:update
+
+After this users's showroom should be updated
